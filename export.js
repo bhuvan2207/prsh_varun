@@ -374,9 +374,24 @@ function ui(targetDiv = document.body) {
     targetDiv.appendChild(div)
     div.id = 'prsCalcUI'
     div.innerHTML = `
-    <p>
-	Below you can select, and inspect, <b style="color:maroon">A)</b> the <a href='https://www.pgscatalog.org' target="_blank">PGS Catalog</a> entries with risk scores for a list of genomic variations; and <b style="color:maroon">B)</b> <a href="https://you.23andme.com/tools/data/download" target="_blank">Your 23andMe data download</a>. Once you have both (A) and (B), you can proceed to <b style="color:maroon">C)</b> to calculate your raw polygenic risk score for the trait targeted by the PGS entry based on <br>PRS  =  exp( ∑ ( 𝛽 * z )). Where β is the effect size (or beta) of one variant and z is the number of copies of the effect allele in that 23andme individual.
-    </p>
+   <p style="line-height: 1.6; font-size: 15px;">
+    Below you can select and inspect:<br><br>
+
+    <b style="color: maroon;">A)</b> The <b>PGS Catalog entries</b> containing risk scores for a list of genomic variants.<br>
+
+    <b style="color: maroon;">B)</b> Your <b>23andMe data download</b>.<br><br>
+
+    Once you have both <b>A</b> and <b>B</b>, you may proceed to:<br><br>
+
+    <b style="color: maroon;">C)</b> Calculate your <b>raw polygenic risk score (PRS)</b> for the selected trait using the formula:<br><br>
+
+    <span style="display:block; text-align:center; font-size: 16px; font-weight: bold;">
+        PRS = exp( ∑ (β × z) )
+    </span><br>
+
+    Where <b>β</b> is the effect size (beta) of a genetic variant, and <b>z</b> is the number of copies of the effect allele found in your 23andMe data.
+</p>
+
     <hr>
     `
     // recall that PGS23 is only global to the module, it is not exported
