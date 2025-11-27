@@ -35,11 +35,20 @@ PGS23.loadPGS = async (i=1) => {
    <span id="summarySpan" hidden=true>[<a id="urlPGS" href='' target="_blank">FTP</a>][<a id="catalogEntry" href="https://www.pgscatalog.org/score/${"PGS000000".slice(0, -JSON.stringify(i).length) + JSON.stringify(i)}" target="_blank">catalog</a>][<a id="pgsBuild" href="https://episphere.github.io/pgs/?id=4" target="_blank">build</a>]<span id="largeFile"></span><br><span id="trait_mapped">...</span>, <span id="dataRows">...</span> variants, [<a id="pubDOI" target="_blank">Reference</a>], [<a href="#" id="objJSON">JSON</a>].</span>
    <p><textarea id="pgsTextArea" style="background-color:black;color:lime" cols=60 rows=5>...</textarea></p>`;
 	// hide entire bracketed items
-	div.querySelector('#urlPGS').parentElement.style.display = 'none';
-	div.querySelector('#catalogEntry').parentElement.style.display = 'none';
-	div.querySelector('#pgsBuild').parentElement.style.display = 'none';
-	div.querySelector('#pubDOI').parentElement.style.display = 'none';
-	div.querySelector('#objJSON').parentElement.style.display = 'none';
+	// hide only the links
+['urlPGS', 'catalogEntry', 'pgsBuild', 'pubDOI', 'objJSON'].forEach(id => {
+    const el = div.querySelector('#' + id);
+    if (el) {
+        // remove surrounding brackets if present
+        if (el.previousSibling && el.previousSibling.nodeType === Node.TEXT_NODE) {
+            el.previousSibling.textContent = el.previousSibling.textContent.replace('[','');
+        }
+        if (el.nextSibling && el.nextSibling.nodeType === Node.TEXT_NODE) {
+            el.nextSibling.textContent = el.nextSibling.textContent.replace(']','');
+        }
+        el.remove();
+    }
+});
 
 
   
