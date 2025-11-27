@@ -31,7 +31,7 @@ let PGS23 = {
 PGS23.loadPGS = async (i=1) => {
    // startng with a default pgs 
    let div = PGS23.divPGS
-   div.innerHTML = `<b style="color:maroon">A)</b> PGS # <input id="pgsID" value=${i} size=5 > <button id='btLoadPgs'>load</button><span id="showLargeFile" hidden=true><input id="checkLargeFile"type="checkbox">large file (under development)</span> 
+   div.innerHTML = `<b style="color:maroon">A)</b> PGS # <input id="pgsID" value=${i} size=5 > <button id='btLoadPgs'>Load</button><span id="showLargeFile" hidden=true><input id="checkLargeFile"type="checkbox">large file (under development)</span> 
    <span id="summarySpan" hidden=true>[<a id="urlPGS" href='' target="_blank">FTP</a>][<a id="catalogEntry" href="https://www.pgscatalog.org/score/${"PGS000000".slice(0, -JSON.stringify(i).length) + JSON.stringify(i)}" target="_blank">catalog</a>][<a id="pgsBuild" href="https://episphere.github.io/pgs/?id=4" target="_blank">build</a>]<span id="largeFile"></span><br><span id="trait_mapped">...</span>, <span id="dataRows">...</span> variants, [<a id="pubDOI" target="_blank">Reference</a>], [<a href="#" id="objJSON">JSON</a>].</span>
    <p><textarea id="pgsTextArea" style="background-color:black;color:lime" cols=60 rows=5>...</textarea></p>`;
   
@@ -107,7 +107,7 @@ PGS23.load23 = async () => {
     let div = PGS23.div23
     div.innerHTML =
         `<hr><b style="color:maroon">B)</b> Download <a href= "genome_Dorothy_Wolf_v4_Full_20170525101345.txt" download="genome_Dorothy_Wolf_v4_Full_20170525101345.txt">female </a> or <a href= "genome_Chad_Wrye_v5_Full_20220921063742.txt" download="genome_Chad_Wrye_v5_Full_20220921063742.txt">male </a> 
-        public 23andme file from the <a id="PGP" href="https://my.pgp-hms.org/public_genetic_data?data_type=23andMe" target="_blank">Personal Genome Project (PGP)</a> and <input type="file" id="file23andMeInput">
+        files and <input type="file" id="file23andMeInput">
 
     <br><span hidden=true id="my23hidden" style="font-size:small">
 		 <span style="color:maroon" id="my23Info"></span> (<span id="my23variants"></span> variants) [<a href='#' id="json23">JSON</a>].
@@ -184,9 +184,6 @@ PGS23.loadCalc = async () => {
 	<textarea id="my23CalcTextArea" style="background-color:black;color:lime" cols=60 rows=5>...</textarea>
 
 	<div id="plotRiskDiv" style="height:300px;">
-
-    <hr><div>If you want to see the current state of the two data objects try <code>data = document.getElementById("PGS23calc").PGS23data</code> in the browser console</div><hr>
-    <div id="errorDiv"></div>
 
     <div id="tabulateAllMatchByEffectDiv"></div>
     <div style="height:250px;" id="pieChartDiv">...</div>
@@ -388,7 +385,7 @@ function ui(targetDiv = document.body) {
 
     <span style="display:block; margin-left: 20px; font-weight: bold;">
         PRS = exp( ∑ (β × z) )
-    </span><br>
+    </span>
 
     Where <b>β</b> is the effect size (beta) of a genetic variant, and <b>z</b> is the number of copies of the effect allele found in your 23andMe data.
 
