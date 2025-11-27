@@ -41,8 +41,32 @@ PGS23.loadPGS = async (i=1) => {
 	div.querySelector('#pubDOI').style.display = 'none';
 	div.querySelector('#objJSON').style.display = 'none';
 	
-	// remove leftover empty brackets []
-	div.innerHTML = div.innerHTML.replace(/\[\s*\]/g, '');
+	// hide only the links
+const ids = ["urlPGS", "catalogEntry", "pgsBuild", "pubDOI", "objJSON"];
+
+ids.forEach(id => {
+    const link = div.querySelector(`#${id}`);
+    if (link) {
+        // remove brackets around link
+        const parent = link.parentNode;
+        
+        let prev = link.previousSibling;
+        let next = link.nextSibling;
+
+        // remove [ before
+        if (prev && prev.nodeType === 3 && prev.textContent.includes('[')) {
+            prev.textContent = prev.textContent.replace('[', '');
+        }
+
+        // remove ] after
+        if (next && next.nodeType === 3 && next.textContent.includes(']')) {
+            next.textContent = next.textContent.replace(']', '');
+        }
+
+        // hide only the anchor
+        link.style.display = 'none';
+    }
+});
 
 
 
