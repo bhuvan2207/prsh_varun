@@ -35,34 +35,38 @@ PGS23.loadPGS = async (i=1) => {
    <span id="summarySpan" hidden=true>[<a id="urlPGS" href='' target="_blank">FTP</a>][<a id="catalogEntry" href="https://www.pgscatalog.org/score/${"PGS000000".slice(0, -JSON.stringify(i).length) + JSON.stringify(i)}" target="_blank">catalog</a>][<a id="pgsBuild" href="https://episphere.github.io/pgs/?id=4" target="_blank">build</a>]<span id="largeFile"></span><br><span id="trait_mapped">...</span>, <span id="dataRows">...</span> variants, [<a id="pubDOI" target="_blank">Reference</a>], [<a href="#" id="objJSON">JSON</a>].</span>
    <p><textarea id="pgsTextArea" style="background-color:black;color:lime" cols=60 rows=5>...</textarea></p>`;
 	// hide links only
-const hideAndClean = (id) => {
-    const el = div.querySelector('#' + id);
-    if (!el) return;
+	div.querySelector('#urlPGS').style.display = 'none';
+	div.querySelector('#catalogEntry').style.display = 'none';
+	div.querySelector('#pgsBuild').style.display = 'none';
+	div.querySelector('#pubDOI').style.display = 'none';
+	div.querySelector('#objJSON').style.display = 'none';
+	
+	const ids = ["urlPGS", "catalogEntry", "pgsBuild", "pubDOI", "objJSON"];
 
-    // remove surrounding brackets and commas safely
-    let parent = el.parentNode;
+	ids.forEach(id => {
+	    const link = div.querySelector(`#${id}`);
+	    if (link) {
+	        // remove brackets around link
+	        const parent = link.parentNode;
+	        
+	        let prev = link.previousSibling;
+	        let next = link.nextSibling;
+	
+	        // remove [ before
+	        if (prev && prev.nodeType === 3 && prev.textContent.includes('[')) {
+	            prev.textContent = prev.textContent.replace('[', '');
+	        }
+	
+	        // remove ] after
+	        if (next && next.nodeType === 3 && next.textContent.includes(']')) {
+	            next.textContent = next.textContent.replace(']', '');
+	        }
+	
+	        // hide only the anchor
+	        link.style.display = 'none';
+	    }
+	});
 
-    // remove leading "[" if present
-    if (parent.previousSibling && parent.previousSibling.nodeValue?.includes('[')) {
-        parent.previousSibling.nodeValue =
-            parent.previousSibling.nodeValue.replace('[', '');
-    }
-
-    // remove trailing "]" and commas
-    if (parent.nextSibling && parent.nextSibling.nodeValue) {
-        parent.nextSibling.nodeValue =
-            parent.nextSibling.nodeValue.replace(']', '').replace(',', '');
-    }
-
-    el.style.display = 'none';
-};
-
-// apply to all links
-hideAndClean('urlPGS');
-hideAndClean('catalogEntry');
-hideAndClean('pgsBuild');
-hideAndClean('pubDOI');
-hideAndClean('objJSON');
 
 
 
