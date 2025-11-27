@@ -384,7 +384,7 @@ function ui(targetDiv = document.body) {
 
     Once you have both <b>A</b> and <b>B</b>, you may proceed to:<br><br>
 
-    <b style="color: maroon;">C)</b> Calculate your <b>raw polygenic risk score (PRS)</b> for the selected trait using the formula below:<br><br>
+    <b style="color: maroon;">C)</b> Calculate your <b>raw polygenic risk score (PRS)</b> for the selected trait using the formula below:<br>
 
     <span style="display:block; margin-left: 20px; font-weight: bold;">
         PRS = exp( ∑ (β × z) )
